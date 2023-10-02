@@ -2,6 +2,7 @@
 #include <string.h>
 #include <microhttpd.h>
 #include <cjson/cJSON.h>
+#include "chal.h"
 
 #define PORT 8080
 
@@ -19,29 +20,25 @@ int handle_get_request(void *cls, struct MHD_Connection *connection,
     struct MHD_Response *response;
     int ret;
     char *response_data;
-    cJSON *root = cJSON_CreateObject();
+    cJSON *result = cJSON_CreateObject();
 
     if (0 != strcmp(method, "GET")) {
         return MHD_NO;
     }
 
     const char *username = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "username");
-    const char *password = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "password"); // For now, we aren't using password
+    const char *password = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "password");
 
-    if (username && strcmp(username, "root") == 0) {
-        cJSON_AddStringToObject(root, "result", "success");
-    } else {
-        cJSON_AddStringToObject(root, "result", "failure");
-    }
+    result = check_user(username, password);
 
-    response_data = cJSON_Print(root);
+    response_data = cJSON_Print(result);
     response = MHD_create_response_from_buffer(strlen(response_data), (void *)response_data, MHD_RESPMEM_MUST_FREE);
     add_cors_headers(response);
     MHD_add_response_header(response, "Content-Type", "application/json");
     ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
     MHD_destroy_response(response);
 
-    cJSON_Delete(root);
+    cJSON_Delete(result);
 
     return ret;
 }
