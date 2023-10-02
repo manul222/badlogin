@@ -30,9 +30,10 @@ ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
 
 WORKDIR /app
 
-COPY back/backend.c /app/login_server.c
+COPY back/src /app/
+COPY back/include /app/
 
-RUN gcc login_server.c -o login_server -lmicrohttpd -lcjson
+RUN gcc backend.c chal.c -o login_server -lmicrohttpd -lcjson
 
 EXPOSE 8080
 
