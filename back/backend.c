@@ -5,6 +5,12 @@
 
 #define PORT 8080
 
+void add_cors_headers(struct MHD_Response *response) {
+    MHD_add_response_header(response, "Access-Control-Allow-Origin", "*");
+    MHD_add_response_header(response, "Access-Control-Allow-Methods", "GET, POST, DELETE");
+    MHD_add_response_header(response, "Access-Control-Allow-Headers", "Content-Type");
+}
+
 int handle_get_request(void *cls, struct MHD_Connection *connection,
                        const char *url, const char *method,
                        const char *version, const char *upload_data,
@@ -20,7 +26,7 @@ int handle_get_request(void *cls, struct MHD_Connection *connection,
     }
 
     const char *username = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "username");
-    // const char *password = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "password"); // For now, we aren't using password
+    const char *password = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "password"); // For now, we aren't using password
 
     if (username && strcmp(username, "root") == 0) {
         cJSON_AddStringToObject(root, "result", "success");
@@ -30,6 +36,7 @@ int handle_get_request(void *cls, struct MHD_Connection *connection,
 
     response_data = cJSON_Print(root);
     response = MHD_create_response_from_buffer(strlen(response_data), (void *)response_data, MHD_RESPMEM_MUST_FREE);
+    add_cors_headers(response);
     MHD_add_response_header(response, "Content-Type", "application/json");
     ret = MHD_queue_response(connection, MHD_HTTP_OK, response);
     MHD_destroy_response(response);
@@ -50,8 +57,6 @@ int main() {
     printf("Login server started on port %d\n", PORT);
 
     while(1) {
-        // This is just a simple loop to keep the server alive
-        // In a real-world application, you might have other logic here or use a different mechanism
         sleep(10);
     }
 

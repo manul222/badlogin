@@ -9,7 +9,7 @@ const LoginForm = () => {
         e.preventDefault();
 
         // Construct the URL with query parameters for the GET request
-        const url = new URL('http://backend:8080/login');
+        const url = new URL('http://localhost:8080/login');
         url.searchParams.append('username', username);
         url.searchParams.append('password', password);
 
