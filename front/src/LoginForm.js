@@ -31,7 +31,10 @@ const LoginForm = () => {
     };
 
     return (
-      <div>
+      <div style={{
+        display: "flex",
+        flexDirection: "row"}}>
+        <div style={{width: "40vw"}}>
         <form onSubmit={handleSubmit}>
           <h1>?ExploiTable?</h1>
           <input 
@@ -88,6 +91,12 @@ const LoginForm = () => {
           />
           <button type="submit" className="btn">Log in</button>
         </form>
+        </div>
+        <div style={{
+          width: "60vw",
+          justifyContent: "center"}}>
+        {/*  show stack data here */}
+        </div>
       </div>
     );
 };
