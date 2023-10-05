@@ -3,13 +3,13 @@
 #include <cjson/cJSON.h>
 
 cJSON *check_user(const char *username, const char *password) {
+    char chk_username[0x20]="";
+    char chk_password[0x20]="";
     int ok = 0;
-    char chk_username[20];
-    char chk_password[20];
 
-    strcpy(chk_username, username);
     strcpy(chk_password, password);
-    if (strcmp(chk_username, "root") == 0 && strcmp(chk_password, "vbgyJHBG#$U'ybgi") == 0) {
+    strcpy(chk_username, username);
+    if (strcmp(chk_username, "root") == 0 && strcmp(chk_password, "vbgyJHBGaKUIybg") == 0) {
         ok = 1;
     }
     

@@ -1,5 +1,5 @@
-#ifndef CHALL_H
-#define CHALL_H
+#ifndef CHAL_H
+#define CHAL_H
 
 #include <stdio.h>
 #include <string.h>
