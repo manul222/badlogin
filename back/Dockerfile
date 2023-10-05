@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM --platform=linux/amd64 ubuntu:latest
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
@@ -33,7 +33,7 @@ WORKDIR /app
 COPY back/src /app/
 COPY back/include /app/
 
-RUN gcc backend.c chal.c -o login_server -lmicrohttpd -lcjson
+RUN gcc backend.c chal.c -fno-stack-protector -no-pie -g -o login_server -lmicrohttpd -lcjson
 
 EXPOSE 8080
 
