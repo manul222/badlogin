@@ -50,6 +50,9 @@ MIT
 ### Member
 
 [RyosukeAraki](https://github.com/kyotoor)
+
 [ToiOoka](https://github.com/Nagahama-toyo)
+
 [KoheiTakigami](https://github.com/manul222)
+
 [YuyaYamada](https://github.com/rfLENtlr)
