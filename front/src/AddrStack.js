@@ -2,10 +2,11 @@ import React from 'react';
 
 export function ByteBlock(props) {
   const defaultStyle = {
-    width: 34, 
+    width: 15, 
     justifyContent: "center",
     textAlign: "center",
     fontWeight: "bold",
+    fontSize: 10,
   };
 
   return (
@@ -18,18 +19,13 @@ export function ByteBlock(props) {
 }
 
 export function AddrRecord(props) {
-  const { value, base, range, style } = props;
+  const { value, addr, style } = props;
 
   const styleForAddr = {
     fontWeight: "bold",
     marginLeft: 10,
-    width: 200
-  }
-
-  const addrRangeStr = (base, range) => {
-    if (!range) return base; 
-    const hexBase = parseInt(base, 16);
-    return `0x${hexBase.toString(16)} ~ 0x${(hexBase + range).toString(16)}`
+    marginRight: 3, 
+    width: '225px !important',
   }
 
   return (
@@ -37,17 +33,19 @@ export function AddrRecord(props) {
       display: "flex",
       flexDirection: "row", 
       ...style}}>
-      <div style={styleForAddr}>
-        {addrRangeStr(base, range)}
-      </div>
+        <div style={styleForAddr}>{addr}</div>
       {value ?
       <div style={{
         display: "fex",
-        width: "100%",
         textAlign: "center",
         fontWeight: "bold"}}>
         <p>{value}</p>
-      </div> : props.children}
+      </div> : 
+      <div style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        }}>{props.children}</div>}
     </div>
   );
 }

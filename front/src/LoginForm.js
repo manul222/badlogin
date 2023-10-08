@@ -102,30 +102,26 @@ const LoginForm = () => {
         <AddrStack style={{marginTop: 100}}>
           <AddrRecord
             style={addrRecordStyle}
-            base="0x1586"          
-            range={passwordLen}>
+            addr="[rbp - 0x50] ~ [rbp - 0x30]">
             {stack.slice(passwordOffset, passwordOffset + passwordLen).map((v, _) => {
               return <ByteBlock value={v} />
             })}
           </AddrRecord>
           <AddrRecord 
             style={addrRecordStyle}
-            base="0x1566" 
-            range={usernameLen}>
+            addr="[rbp - 0x30] ~ [rbp - 0x10]">
             {stack.slice(usernameOffset, usernameOffset + usernameLen).map((v, _) => {
               return <ByteBlock value={v} />
             })}
           </AddrRecord>
           <AddrRecord 
-            base="0x15a6"
             style={addrRecordStyle}
-            range={unusedLen}
-            value={stack[41]} />
+            addr="[rbp - 0x10] ~ [rbp - 0x40]"
+            value="未使用領域" />
           <AddrRecord
-            base="0x15b2"
             style={addrRecordStyle} 
-            range={okLen}
-            value={stack[42]} />
+            addr="[rbp - 0x40] ~ [rbp - 0x00]"
+            value={`ok = ${username.length >= 45 || password.length >= 77 ? 1 : 0}`} />
         </AddrStack>
         </div>
       </div>
@@ -136,7 +132,7 @@ const addrRecordStyle = {
   width: 700,
   border: "2pt solid black",
   marginTop: -2,
-  backgroundColor: "#c0c0c0"
+  backgroundColor: "#c0c0c0",
 }
 
 export default LoginForm;
