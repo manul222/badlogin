@@ -29,7 +29,7 @@ export default function CustomModal(props) {
         <Typography id="modal-modal-description">
           {props.desc}
         </Typography>
-        {props.showLink ? <a href="http://localhost:3000/answer" style={{color: "#33C1FF"}}>answer link</a> : "hint:Buffer overflow. Check chall.c👀"}
+        {props.showLink ? <a href="https://hackmd.io/@nyTr4h5oRGKcHA0ei7WF1g/badLogin" style={{color: "#33C1FF"}}>answer link</a> : <a href="https://hackmd.io/@nyTr4h5oRGKcHA0ei7WF1g/badLogin" style={{color: "#33C1FF"}}>give up🤮</a>}
       </Box>
     </Modal>
   );
