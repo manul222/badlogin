@@ -29,7 +29,7 @@ export default function CustomModal(props) {
         <Typography id="modal-modal-description">
           {props.desc}
         </Typography>
-        {props.showLink ? <a href="http://localhost:3000/login" style={{color: "#33C1FF"}}>answer link</a> : undefined}
+        {props.showLink ? <a href="http://localhost:3000/answer" style={{color: "#33C1FF"}}>answer link</a> : "hint:Buffer overflow. Check chall.c👀"}
       </Box>
     </Modal>
   );
