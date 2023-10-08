@@ -9,12 +9,8 @@ const LoginForm = () => {
 
     const usernameOffset = 32;
     const passwordOffset = 0;
-    const unusedOffset = 64;
-    const okOffset = 76;
     const usernameLen = 32;
     const passwordLen = 32; 
-    const unusedLen = 12;
-    const okLen = 4;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -99,7 +95,8 @@ const LoginForm = () => {
         <div style={{
           width: "60vw",
           justifyContent: "center"}}>
-        <AddrStack style={{marginTop: 100}}>
+        <h1 style={{color: "#000", marginTop: 100}}>Stack Viewer</h1>    
+        <AddrStack>
           <AddrRecord
             style={addrRecordStyle}
             addr="[rbp - 0x50] ~ [rbp - 0x30]">
@@ -116,11 +113,11 @@ const LoginForm = () => {
           </AddrRecord>
           <AddrRecord 
             style={addrRecordStyle}
-            addr="[rbp - 0x10] ~ [rbp - 0x40]"
+            addr="[rbp - 0x10] ~ [rbp - 0x04]"
             value="未使用領域" />
           <AddrRecord
             style={addrRecordStyle} 
-            addr="[rbp - 0x40] ~ [rbp - 0x00]"
+            addr="[rbp - 0x04] ~ [rbp - 0x00]"
             value={`ok = ${username.length >= 45 || password.length >= 77 ? 1 : 0}`} />
         </AddrStack>
         </div>
