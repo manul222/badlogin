@@ -47,7 +47,7 @@ const LoginForm = () => {
         return "congratulation 🎉"
       }
 
-      return "congratulation 🎉, but try harder !!!!"
+      return "but try harder !!!!"
     }
 
     return (
