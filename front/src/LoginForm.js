@@ -5,12 +5,16 @@ import {AddrStack, AddrRecord, ByteBlock} from './AddrStack';
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [stack, setStack] = useState(Array(43).fill(''));
+    const [stack, setStack] = useState(Array(80).fill(''));
 
-    const usernameOffset = 20;
+    const usernameOffset = 32;
     const passwordOffset = 0;
-    const usernameLen = 20;
-    const passwordLen = 20; 
+    const unusedOffset = 64;
+    const okOffset = 76;
+    const usernameLen = 32;
+    const passwordLen = 32; 
+    const unusedLen = 12;
+    const okLen = 4;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +27,7 @@ const LoginForm = () => {
         const response = await fetch(url);
 
         const data = await response.json();
-        if (data.success) {
+        if (data.result) {
             alert('ログイン成功');
         } else {
             alert('ログイン失敗');
@@ -98,7 +102,7 @@ const LoginForm = () => {
         <AddrStack style={{marginTop: 100}}>
           <AddrRecord
             style={addrRecordStyle}
-            base="0x1000"          
+            base="0x1586"          
             range={passwordLen}>
             {stack.slice(passwordOffset, passwordOffset + passwordLen).map((v, _) => {
               return <ByteBlock value={v} />
@@ -106,24 +110,21 @@ const LoginForm = () => {
           </AddrRecord>
           <AddrRecord 
             style={addrRecordStyle}
-            base="0x1000" 
+            base="0x1566" 
             range={usernameLen}>
             {stack.slice(usernameOffset, usernameOffset + usernameLen).map((v, _) => {
               return <ByteBlock value={v} />
             })}
           </AddrRecord>
-          <AddrRecord
-            base="0x1000"
-            style={addrRecordStyle} 
-            range={4}
-            value={stack[40]} />
           <AddrRecord 
-            base="0x1000"
+            base="0x15a6"
             style={addrRecordStyle}
+            range={unusedLen}
             value={stack[41]} />
           <AddrRecord
-            base="0x1000"
+            base="0x15b2"
             style={addrRecordStyle} 
+            range={okLen}
             value={stack[42]} />
         </AddrStack>
         </div>
