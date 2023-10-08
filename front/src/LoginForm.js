@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
 import {AddrStack, AddrRecord, ByteBlock} from './AddrStack';
+import CustomModal from './CustomModal';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [open, setOpen] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [stack, setStack] = useState(Array(80).fill(''));
 
     const usernameOffset = 32;
@@ -24,11 +27,28 @@ const LoginForm = () => {
 
         const data = await response.json();
         if (data.result) {
-            alert('ログイン成功');
+            setSuccess(true);
         } else {
-            alert('ログイン失敗');
+          setSuccess(false);
         }
+        setOpen(true);
     };
+
+    const modalTitle = () => {
+      if (!success) return "Login fail 😭"; 
+
+      return "Login succeed 🎉"
+    }
+
+    const modalDesc = () => {
+      if (!success) return "try harder !!!!";
+
+      if (username.length >= 45 || password.length >= 77) {
+        return "congratulation 🎉"
+      }
+
+      return "congratulation 🎉, but try harder !!!!"
+    }
 
     return (
       <div style={{
@@ -121,6 +141,12 @@ const LoginForm = () => {
             value={`ok = ${username.length >= 45 || password.length >= 77 ? 1 : 0}`} />
         </AddrStack>
         </div>
+        <CustomModal 
+          open={open} 
+          onClose={() => setOpen(!open)}
+          title={modalTitle()}
+          desc={modalDesc()}
+          showLink={username.length >= 45 || password.length >= 77} />
       </div>
     );
 };

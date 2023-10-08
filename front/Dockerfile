@@ -13,6 +13,8 @@ RUN create-react-app login-front
 # アプリケーションのディレクトリに移動
 WORKDIR /usr/src/app/login-front
 
+RUN npm install -y @mui/material @emotion/react @emotion/styled
+
 # src以下をコピー
 COPY front/src ./src
 
