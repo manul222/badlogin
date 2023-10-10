@@ -15,7 +15,13 @@
 
 #### 機能2: 解説
 
-エクスプロイトに成功すると解説ページを閲覧することができます。
+~~エクスプロイトに成功すると解説ページを閲覧することができます。~~
+
+[10/10更新]
+
+こちら誤りです。正しくはエクスプロイトの成否に関係なく、***ログイン試行後に表示されるウィンドウから解説ページを閲覧することができます。***
+
+プレゼン資料でも"デフォルトで設定してあるユーザでログインした時、又はエクスプロイト成功時に解説を表示する"といった旨の説明がされていますが、本READMEの記載が正しいものとなっています。より初学者向けに学習リソースは開くべきという意見がチーム内から出たことによる方針転換がチーム内で共有できていませんでした。申し訳ありません。
 
 ### Execution environment(As of Oct.8.2023)
 
@@ -48,11 +54,11 @@ try harder!
 MIT
 
 ### Member
+[10/10修正]
 
-[RyosukeAraki](https://github.com/kyotoor)
+githubアカウントを公開しないでほしいという意見もあったため修正
 
-[ToiOoka](https://github.com/Nagahama-toyo)
-
-[KoheiTakigami](https://github.com/manul222)
-
-[YuyaYamada](https://github.com/rfLENtlr)
+- RyosukeAraki
+- ToiOoka
+- KoheiTakigami
+- YuyaYamada
