@@ -54,9 +54,6 @@ try harder!
 MIT
 
 ### Member
-[10/10修正]
-
-githubアカウントを公開しないでほしいという意見もあったため修正
 
 - RyosukeAraki
 - ToiOoka
